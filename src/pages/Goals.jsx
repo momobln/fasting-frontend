@@ -1,4 +1,3 @@
-// src/pages/Goals.jsx
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../api/axios';
 

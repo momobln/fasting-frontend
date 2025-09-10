@@ -15,18 +15,19 @@ export default function Login() {
     try {
       await login(email.trim(), password);
       nav('/');
-    } catch {
-      setErr('Invalid credentials');
-    }
+    } catch (e) {
+  setErr(e?.response?.data?.error || 'Invalid credentials');
+}
+
   }
 
   return (
-    <form onSubmit={onSubmit} style={{ maxWidth: 360, margin: '40px auto', display: 'grid', gap: 8 }}>
+    <form onSubmit={onSubmit} style={{ maxWidth: 360, margin: '40px auto', display: 'grid', gap: 12 }}>
       <h2>Login</h2>
-      <input type="email" required placeholder="email" value={email}
-             onChange={(e) => { setEmail(e.target.value); if (err) setErr(''); }} />
-      <input type="password" required placeholder="password" value={password}
-             onChange={(e) => { setPassword(e.target.value); if (err) setErr(''); }} />
+      <input type="email" required placeholder="email"
+             value={email} onChange={(e)=>{ setEmail(e.target.value); if (err) setErr(''); }} />
+      <input type="password" required placeholder="password"
+             value={password} onChange={(e)=>{ setPassword(e.target.value); if (err) setErr(''); }} />
       {err && <div style={{ color: 'crimson' }}>{err}</div>}
       <button type="submit">Login</button>
       <Link to="/signup">No account? Signup</Link>

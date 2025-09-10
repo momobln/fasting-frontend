@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';
-import { useWeeklyStats } from '../features/stats/hooks';
+import { useWeeklyStats } from "../features/fasts/hooks";
 
 export default function Dashboard(){
   const { logout } = useAuth();

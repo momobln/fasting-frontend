@@ -1,0 +1,38 @@
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { api } from '../../api/axios'
+import { useAuth } from '../../auth/useAuth'
+
+export const useFasts = () => {
+  const { token } = useAuth()
+  return useQuery({
+    queryKey: ['fasts'],
+    queryFn: async () => (await api.get('/fasts')).data,
+    enabled: !!token,
+  })
+}
+
+export const useStartFast = () => {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (p) => api.post('/fasts/start', p).then(r => r.data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['fasts'] }),
+  })
+}
+
+export const useStopFast = () => {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (id) => api.post(`/fasts/${id}/stop`).then(r => r.data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['fasts'] }),
+  })
+}
+
+export const useWeeklyStats = () => {            // ← MUST exist
+  const { token } = useAuth()
+  return useQuery({
+    queryKey: ['weekly'],
+    queryFn: async () => (await api.get('/stats/weekly')).data,
+    enabled: !!token,
+    retry: false,
+  })
+}
