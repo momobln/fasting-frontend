@@ -27,7 +27,7 @@ export const useStopFast = () => {
   })
 }
 
-export const useWeeklyStats = () => {            // ← MUST exist
+export const useWeeklyStats = () => {            
   const { token } = useAuth()
   return useQuery({
     queryKey: ['weekly'],

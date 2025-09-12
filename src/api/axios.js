@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const api = axios.create({ baseURL: 'http://localhost:3000' });
-
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5005';
+export const api = axios.create({ baseURL });
 // set once from context
 export function setAuthToken(token) {
   if (token) api.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -14,3 +14,15 @@ api.interceptors.request.use((cfg) => {
   if (t) cfg.headers.Authorization = `Bearer ${t}`;
   return cfg;
 });
+// auto logout on 401
+api.interceptors.response.use(
+  r => r,
+  err => {
+    if (err?.response?.status === 401) {
+      localStorage.removeItem('token');
+      // hard redirect keeps it simple
+      window.location.href = '/login';
+    }
+    return Promise.reject(err);
+  }
+);
