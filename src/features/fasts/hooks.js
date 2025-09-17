@@ -37,7 +37,7 @@ export const useStartFast = () => {
           ?.map((data) => data.message)
           .join(", ") || "";
 
-      console.warn("⚠️ Error:", message, details);
+      console.warn(" Error:", message, details);
     },
   });
 };
@@ -69,7 +69,7 @@ export const useStopFast = () => {
           ?.map((d) => d.message)
           .join(", ") || "";
 
-      console.warn("⚠️ Error:", message, details);
+      console.warn(" Error:", message, details);
     },
   });
 };
