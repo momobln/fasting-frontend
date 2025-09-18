@@ -1,12 +1,38 @@
-# React + Vite
+# Fasting Tracker – Frontend (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##  Overview
+This is the **frontend** of the **Fasting Tracker** project.  
+Built with **React (Vite)**, it connects to the backend API (Express + MongoDB) to provide a smooth user interface for tracking fasting sessions, goals, and statistics.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Features
+- **Authentication** (Signup, Login, Protected Routes with JWT)  
+-  **Fasting Sessions** (start, stop, view history)  
+-  **Goals Management** (set weekly/monthly fasting targets)  
+-  **Stats Dashboard** (track progress over time)  
+-  **TanStack Query** for API data fetching and caching  
+-  Clean UI with responsive design  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Tech Stack
+- **React 18** + **Vite**
+- **React Router v6**
+- **TanStack Query**
+- **Axios**
+- **Context API** for Auth state
+- **TailwindCSS** 
+
+---
+
+##  Project Structure
+```bash
+src/
+ ├─ api/            # axios instance, token handling
+ ├─ auth/           # AuthContext, useAuth hook
+ ├─ components/     # Reusable UI components
+ ├─ features/       # Fasts, Goals, Stats modules
+ ├─ pages/          # Login, Signup, Dashboard, Sessions
+ ├─ App.jsx         # Routes setup
+ └─ main.jsx        # React root
