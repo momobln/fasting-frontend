@@ -3,6 +3,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Sessions from './pages/Sessions';
+import Goals from './pages/Goals';
 import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
@@ -26,6 +27,17 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+      
+      <Route
+        path="/goals"                          
+        element={
+          <ProtectedRoute>
+            <Goals />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<div>Not found</div>} />
     </Routes>
   );
 }
